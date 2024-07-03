@@ -11,8 +11,7 @@ https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251
 
 
 ## Problem formulation
-
-
+![overview](https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/5662d76e-e410-44e6-a462-d027681dfae1)
 
 
 ## Code preparation
