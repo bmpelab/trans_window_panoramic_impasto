@@ -74,7 +74,7 @@ Type `python vis_pc.py -h` for more options of the visualizer.
 
 ## Evaluation
 
-We provide ex vivo dataset with ground truth of the deformed surface obtained by 3D scanning. Please download the dataset from [here](http://). Since the structure
+We provide ex vivo dataset with ground truth of the deformed surface obtained by 3D scanning. Please download the dataset from [here](http://). We compare the recovered surface with the reference surface (the scanned one) for evaluating the recovery accuracy in terms of surface distance (defined in [J. Chen, et al., IJCARS, 2023](https://doi.org/10.1007/s11548-023-02889-z)).
 
 ```bash
 python run_endonerf.py --config configs/{your_config_file}.txt --render_only
