@@ -7,7 +7,8 @@ A novel problem setting and model-based framework for online tissue deformation 
 **[\[Paper\]](https://) [\[Sample Dataset\]](https://forms)**
 
 ## Demo
-https://user-images.githubusercontent.com/6317569/173825509-41513eb4-3496-4b8b-814b-73f7e960d31a.mp4
+https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251c0-c616-4243-a203-20599780d6df
+
 
 ## Problem formulation
 
