@@ -11,19 +11,6 @@ https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251
 ## Problem formulation
 ![overview](https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/5662d76e-e410-44e6-a462-d027681dfae1)
 
-
-## Code preparation
-
-
-
-<!--We recommend using Miniconda to set up an environment:-->
-
-```bash
-cd xxx
-```
-
-<!--We managed to test our code on Ubuntu 18.04 with Python 3.6 and CUDA 10.2.-->
-
 ## Dataset preparation
 
 You can download the well-prepared dataset from XXX (derived from our ex vivo dataset) and XXX (derived from Hamlyn center dataset). For the EndoNeRF dataset, please download from [here](https://github.com/med-air/EndoNeRF) and process following the instructions below. For more datasets from the Hamlyn Centre, please visit [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/)
@@ -54,6 +41,18 @@ scene flow generation, point map generation
 ```
 
 <!--In our experiments, stereo depth maps are obtained by [STTR-Light](https://github.com/mli0603/stereo-transformer/tree/sttr-light) and tool masks are extracted manually. Alternatively, you can use segmentation networks, e.g., [MF-TAPNet](https://github.com/YuemingJin/MF-TAPNet), to extract tool masks. The `pose_bounds.npy` file saves camera poses and intrinsics in [LLFF format](https://github.com/Fyusion/LLFF#using-your-own-poses-without-running-colmap). In our single-viewpoint setting, we set all camera poses to identity matrices to avoid interference of ill-calibrated poses.-->
+
+## Code preparation
+
+
+
+<!--We recommend using Miniconda to set up an environment:-->
+
+```bash
+cd xxx
+```
+
+<!--We managed to test our code on Ubuntu 18.04 with Python 3.6 and CUDA 10.2.-->
 
 ## Run
 
