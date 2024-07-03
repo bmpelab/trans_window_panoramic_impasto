@@ -1,0 +1,18 @@
+Copyright (c) 2024 Jiahe Chen. All rights reserved.
+
+This software and the associated documentation files (the "Software"), and the research paper
+Trans-Window Panoramic Impasto for Online Tissue Deformation Recovery (the "Paper") 
+including but not limited to the figures and tables are provided for non-commercial use only and 
+without any warranty. Any commercial use requires a prior arrangement with the author (Jiahe Chen). 
+When using any parts of the Software or the Paper in your work, please cite the following papers:
+
+@InProceedings{chen_trans-window_2024,
+ author = {Chen, Jiahe and Kobayashi, Etsuko and Sakuma, Ichiro and Tomii, Naoki},
+ title = {{Trans-Window Panoramic Impasto for Online Tissue Deformation Recovery}},
+ booktitle = {Medical {{Image Computing}} and {{Computer Assisted Intervention}} -- {{MICCAI}} 2024},
+ pages = {xxx--xxx},
+ year = {2024},
+}
+
+The above copyright notice and this permission notice shall be included in all copies or
+substantial portions of the Software.
