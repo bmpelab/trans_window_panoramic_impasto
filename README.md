@@ -4,8 +4,6 @@ Implementation for MICCAI 2024 paper **[Trans-Window Panoramic Impasto for Onlin
 
 A novel problem setting and model-based framework for online tissue deformation recovery.
 
-**[\[Paper\]](https://) [\[Sample Dataset\]](https://forms)**
-
 ## Demo
 https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251c0-c616-4243-a203-20599780d6df
 
