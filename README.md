@@ -21,20 +21,14 @@ https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251
 <!--We recommend using Miniconda to set up an environment:-->
 
 ```bash
-cd EndoNeRF
-conda create -n endonerf python=3.6
-conda activate endonerf
-pip install -r requirements.txt
-cd torchsearchsorted
-pip install .
-cd ..
+cd xxx
 ```
 
 <!--We managed to test our code on Ubuntu 18.04 with Python 3.6 and CUDA 10.2.-->
 
 ## Dataset preparation
 
-You can download the well-prepared dataset from XXX and XXX. For the EndoNeRF dataset, please download from and process following the instructions below. For more datasets from the Hamlyn Centre, please visit [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/)
+You can download the well-prepared dataset from XXX (derived from our ex vivo dataset) and XXX (derived from Hamlyn center dataset). For the EndoNeRF dataset, please download from [here](https://github.com/med-air/EndoNeRF) and process following the instructions below. For more datasets from the Hamlyn Centre, please visit [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/)
 
 The structure of the dataset should looks like:
 
@@ -68,7 +62,7 @@ scene flow generation, point map generation
 Although the data of all frames are prepared, the code iteratively load the data frame by frame; thus, it is a online approach that making use of only the current and previous frames information.
 
 ```bash
-python endo_pc_reconstruction.py --config_file configs/{your_config_file}.txt --n_frames {num_of_frames} --depth_smoother --depth_smoother_d 28
+xxx
 ```
 
 The reconstructed point clouds will be saved to `logs/{expname}/reconstructed_pcds_{epoch}`. For more options of this reconstruction script, type `python endo_pc_reconstruction.py -h`.
@@ -83,7 +77,7 @@ Type `python vis_pc.py -h` for more options of the visualizer.
 
 ## Evaluation
 
-First, type the command below to render left views from the optimized model:
+We provide ex vivo dataset with ground truth of the deformed surface obtained by 3D scanning. Please download the dataset from [here](http://). Since the structure
 
 ```bash
 python run_endonerf.py --config configs/{your_config_file}.txt --render_only
@@ -110,6 +104,14 @@ If you find this work helpful, you can cite our paper as follows:
  year = {2024},
 }
 ```
+
+If you use our ex vivo datasets, please cite this work also:
+
+```
+xxx
+```
+
+If you use the Hamlyn center datasets, please appropriately cite their works following the instructions in [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/).
 
 ## Acknowledgement
 
