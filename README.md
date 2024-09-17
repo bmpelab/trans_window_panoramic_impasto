@@ -13,7 +13,7 @@ https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251
 
 ## Dataset preparation
 
-You can download the well-prepared dataset from XXX (derived from our ex vivo dataset) and XXX (derived from Hamlyn center dataset). For the EndoNeRF dataset, please download from [here](https://github.com/med-air/EndoNeRF) and process following the instructions below. For more datasets from the Hamlyn Centre, please visit [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/)
+You can download the well-prepared dataset from [SurgEM](https://github.com/bmpelab/SurgEM.git) (derived from our ex vivo dataset) and XXX (derived from Hamlyn center dataset). For the EndoNeRF dataset, please download from [here](https://github.com/med-air/EndoNeRF) and process following the instructions below. For more datasets from the Hamlyn Centre, please visit [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/)
 
 The structure of the dataset should looks like:
 
