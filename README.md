@@ -13,34 +13,33 @@ https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251
 
 ## Dataset preparation
 
-You can download the well-prepared dataset from [SurgEM](https://github.com/bmpelab/SurgEM.git) (derived from our ex vivo dataset) and XXX (derived from Hamlyn center dataset). For the EndoNeRF dataset, please download from [here](https://github.com/med-air/EndoNeRF) and process following the instructions below. For more datasets from the Hamlyn Centre, please visit [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/)
+You can download the well-prepared ex vivo dataset from [SurgEM](https://github.com/bmpelab/SurgEM.git) and in vivo dataset (derived from Hamlyn center dataset) from [here](http://). For the EndoNeRF dataset, please download via their [website](https://github.com/med-air/EndoNeRF) and process following the instructions below.
 
-The structure of the dataset should looks like:
+The structure of the dataset looks like:
 
-
-
-image and camrea parameters download, ours, endonerf, hamlyn
-
-Note that, in case you capture images by your own system, image rectification may be necessary using the calibrated camera parameters. For image rectification, please follows [OpenCV_stereoRectify](https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html#ga617b1685d4059c6040827800e72ad2b6).
-
-3D reconstruction, 2D optical flow tracking
-
-instrument mask generation
-
-scene flow generation, point map generation
-
-<!--To test our method on your own data, prepare a data directory organized in the following structure:-->
-
-```
-+ data1
-    |
-    |+ depth/           # depth maps
-    |+ masks/           # binary tool masks
-    |+ images/          # rgb images
-    |+ pose_bounds.npy  # camera poses & intrinsics in LLFF format
+```sh
+├── datasets
+    ├── surgem_ex_vivo (the surgem ex vivo dataset)
+        ├── constraint_map
+        ├── point_3d_map
+        ├── mask
+        ├── scene_flow
+        ├── rectified_left
+        ├── rectified_right
+        ├── evaluation
+        ├── rectifiedCamera.mat (camera parameter)
+    ├── hamlyn_in_vivo
+        ├── point_3d_map
+        ├── scene_flow
+        ├── rectified_left
+        ├── rectified_right
+        ├── evaluation
+        ├── rectifiedCamera.mat
 ```
 
-<!--In our experiments, stereo depth maps are obtained by [STTR-Light](https://github.com/mli0603/stereo-transformer/tree/sttr-light) and tool masks are extracted manually. Alternatively, you can use segmentation networks, e.g., [MF-TAPNet](https://github.com/YuemingJin/MF-TAPNet), to extract tool masks. The `pose_bounds.npy` file saves camera poses and intrinsics in [LLFF format](https://github.com/Fyusion/LLFF#using-your-own-poses-without-running-colmap). In our single-viewpoint setting, we set all camera poses to identity matrices to avoid interference of ill-calibrated poses.-->
+### Instruction to create your own dataset 
+
+In case you capture images by your own system, image rectification may be necessary using the calibrated camera parameters. For image rectification, please follows [OpenCV_stereoRectify](https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html#ga617b1685d4059c6040827800e72ad2b6). For 3D reconstruction and 2D tracking, please check [RAFT-Stereo](https://github.com/princeton-vl/RAFT-Stereo.git) and [LiteFlowNet3](https://github.com/twhui/LiteFlowNet3.git). After that, you can create the scene flow combining the 3D reconstructed and 2D tracked results. If there are occlusion caused by surgical instrument, instrument segmentation is necessary.
 
 ## Code preparation
 
@@ -56,25 +55,15 @@ cd xxx
 
 ## Run
 
-Although the data of all frames are prepared, the code iteratively load the data frame by frame; thus, it is a online approach that making use of only the current and previous frames information.
+Although the data of all frames are prepared, the code iteratively load the data frame by frame; thus, it is a online approach that making use of only the current and previous frames information. We prepare two scripts for your convenience to run the test on surgem_ex_vivo and hamlyn_in_vivo dataset.
 
-```bash
-xxx
-```
+First clone or download this repository. Then, open `main_surgem.m` or `main_hamlyn.m` in MATLAB, adjust the `data_folder` to the one of the dataset.
 
-The reconstructed point clouds will be saved to `logs/{expname}/reconstructed_pcds_{epoch}`. For more options of this reconstruction script, type `python endo_pc_reconstruction.py -h`.
-
-We also build a visualizer to play point cloud animations. To display reconstructed point clouds, type the command as follows.
-
-```bash
-python vis_pc.py --pc_dir logs/{expname}/reconstructed_pcds_{epoch}
-```
-
-Type `python vis_pc.py -h` for more options of the visualizer.
+After that, run the code. New folders (`mesh`) containing the results will be created under the same folder of the dataset.
 
 ## Evaluation
 
-We provide ex vivo dataset with ground truth of the deformed surface obtained by 3D scanning. Please download the dataset from [here](http://). We compare the recovered surface with the reference surface (the scanned one) for evaluating the recovery accuracy in terms of surface distance (defined in [J. Chen, et al., IJCARS, 2023](https://doi.org/10.1007/s11548-023-02889-z)).
+We provide ex vivo dataset with ground truth of the deformed surface obtained by 3D scanning. Please download the dataset from [here](https://github.com/bmpelab/SurgEM.git). We compare the recovered surface with the reference surface (the scanned one) for evaluating the recovery accuracy in terms of surface distance (defined in [J. Chen, et al., IJCARS, 2023](https://doi.org/10.1007/s11548-023-02889-z)). For details about the evaluation, please check the dataset.
 
 ```bash
 python run_endonerf.py --config configs/{your_config_file}.txt --render_only
@@ -105,7 +94,13 @@ If you find this work helpful, you can cite our paper as follows:
 If you use our ex vivo datasets, please cite this work also:
 
 ```
-xxx
+@article{chen2024surgem,
+  title={SurgEM: A Vision-based Surgery Environment Modeling Framework for Constructing a Digital Twin towards Autonomous Soft Tissue Manipulation},
+  author={Chen, Jiahe and Kobayashi, Etsuko and Sakuma, Ichiro and Tomii, Naoki},
+  journal={IEEE Robotics and Automation Letters},
+  year={2024},
+  publisher={IEEE}
+}
 ```
 
 If you use the Hamlyn center datasets, please appropriately cite their works following the instructions in [Hamlyn Centre Laparoscopic / Endoscopic Video Datasets](https://hamlyn.doc.ic.ac.uk/vision/).
