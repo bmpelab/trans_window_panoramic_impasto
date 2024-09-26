@@ -41,18 +41,6 @@ The structure of the dataset looks like:
 
 In case you capture images by your own system, image rectification may be necessary using the calibrated camera parameters. For image rectification, please follows [OpenCV_stereoRectify](https://docs.opencv.org/4.x/d9/d0c/group__calib3d.html#ga617b1685d4059c6040827800e72ad2b6). For 3D reconstruction and 2D tracking, please check [RAFT-Stereo](https://github.com/princeton-vl/RAFT-Stereo.git) and [LiteFlowNet3](https://github.com/twhui/LiteFlowNet3.git). After that, you can create the scene flow combining the 3D reconstructed and 2D tracked results. If there are occlusion caused by surgical instrument, instrument segmentation is necessary.
 
-## Code preparation
-
-
-
-<!--We recommend using Miniconda to set up an environment:-->
-
-```bash
-cd xxx
-```
-
-<!--We managed to test our code on Ubuntu 18.04 with Python 3.6 and CUDA 10.2.-->
-
 ## Run
 
 Although the data of all frames are prepared, the code iteratively load the data frame by frame; thus, it is a online approach that making use of only the current and previous frames information. We prepare two scripts for your convenience to run the test on surgem_ex_vivo and hamlyn_in_vivo dataset.
@@ -64,18 +52,6 @@ After that, run the code. New folders (`mesh`) containing the results will be cr
 ## Evaluation
 
 We provide ex vivo dataset with ground truth of the deformed surface obtained by 3D scanning. Please download the dataset from [here](https://github.com/bmpelab/SurgEM.git). We compare the recovered surface with the reference surface (the scanned one) for evaluating the recovery accuracy in terms of surface distance (defined in [J. Chen, et al., IJCARS, 2023](https://doi.org/10.1007/s11548-023-02889-z)). For details about the evaluation, please check the dataset.
-
-```bash
-python run_endonerf.py --config configs/{your_config_file}.txt --render_only
-```
-
-The rendered images will be saved to `logs/{expname}/renderonly_path_fixidentity_{epoch}/estim/`. Then, you can type the command below to acquire quantitative results:
-
-```bash
-python eval_rgb.py --gt_dir /path/to/data/images --mask_dir /path/to/data/gt_masks --img_dir logs/{expname}/renderonly_path_fixidentity_{epoch}/estim/
-```
-
-Note that we only evaluate photometric errors due to the difficulties in collecting geometric ground truth. 
 
 ## Bibtex
 
@@ -107,5 +83,8 @@ If you use the Hamlyn center datasets, please appropriately cite their works fol
 
 ## Acknowledgement
 
-- readflow code
-- natsort
+Thanks for the efforts of all authors of the following projects/codes.
+
+1. [natsort](https://www.mathworks.com/matlabcentral/fileexchange/10959-sort_nat-natural-order-sort)
+2. [RAFT-Stereo](https://github.com/princeton-vl/RAFT-Stereo.git)
+3. [LiteFlowNet3](https://github.com/twhui/LiteFlowNet3.git)
