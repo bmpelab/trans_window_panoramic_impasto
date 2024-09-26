@@ -33,7 +33,6 @@ The structure of the dataset looks like:
         ├── scene_flow
         ├── rectified_left
         ├── rectified_right
-        ├── evaluation
         ├── rectifiedCamera.mat
 ```
 
