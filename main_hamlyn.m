@@ -9,16 +9,14 @@ texture_flag = true;
 save_flag = true;
 edge_filter_threshold = 10;
 edge_filter_threshold2 = 1;
-sr = 3; % sampling rate
+sr = 1; % sampling rate
 alpha = 1.07;
-image_offset = 64;
-camera_fix_flag = true;
-data_folder = './surgem_ex_vivo/g2';
+image_offset = 40;
+camera_fix_flag = false;
+data_folder = 'G:/chen/Documents/DataManagement/Data/hamlyn_in_vivo';
 left_image_folder = [data_folder '/rectified_left'];
-tool_mask_folder = [data_folder '/mask'];
 point_3d_map_folder = [data_folder '/point_3d_map'];
 scene_flow_map_folder = [data_folder '/scene_flow'];
-constraint_map_folder = [data_folder '/constraint_map'];
 load([data_folder '/rectifiedCamera.mat']);
 % point_3d_map
 point_3d_map_dir = dir([point_3d_map_folder '/*.mat']);
@@ -28,18 +26,10 @@ point_3d_map_names = {point_3d_map_dir.name};
 left_image_dir = dir([left_image_folder '/*.png']);
 left_image_names = {left_image_dir.name};
 [left_image_names,~] = sortNat(left_image_names);
-% left mask
-tool_mask_dir = dir([tool_mask_folder '/*.png']);
-tool_mask_names = {tool_mask_dir.name};
-[tool_mask_names,~] = sortNat(tool_mask_names);
 % scene flow file (.mat) list
 scene_flow_map_dir = dir([scene_flow_map_folder '/*.mat']);
 scene_flow_map_names = {scene_flow_map_dir.name};
 [scene_flow_map_names,~] = sortNat(scene_flow_map_names);
-% constraint map file (.mat) list
-constraint_map_dir = dir([constraint_map_folder '/*.mat']);
-constraint_map_names = {constraint_map_dir.name};
-[constraint_map_names,~] = sortNat(constraint_map_names);
 % output mesh folder
 texture_mesh_folder = [data_folder '/mesh'];
 if ~exist(texture_mesh_folder,'dir')
@@ -53,11 +43,7 @@ point_3d_map = load([point_3d_map_folder '/' point_3d_map_names{1}]).point_3d_ma
 point_3d_map = point_3d_map(:,1+image_offset:end,:);
 point_3d_map = point_3d_map(1:sr:end,1:sr:end,:);
 point_mask = logical((point_3d_map(:,:,1)==0).*(point_3d_map(:,:,2)==0).*(point_3d_map(:,:,3)==0));
-tool_mask = imread([tool_mask_folder '/' tool_mask_names{1}]);
-tool_mask = tool_mask(:,1+image_offset:end,:);
-tool_mask = tool_mask(1:sr:end,1:sr:end,:);
-tool_mask = logical((tool_mask(:,:,1)==0).*(tool_mask(:,:,2)==255).*(tool_mask(:,:,3)==0));
-% tool_mask = logical(tool_mask);
+tool_mask = false(size(left_image,1),size(left_image,2));
 height = size(left_image,1);
 width = size(left_image,2);
 heightc = round(1.2*height); % canonical
@@ -110,10 +96,7 @@ for i = 1 : length(scene_flow_map_names)
     scene_flow_mask = logical((scene_flow_map(:,:,1)==0).*(scene_flow_map(:,:,2)==0).*(scene_flow_map(:,:,3)==0));
     % tool mask
     tool_mask_a = tool_mask_b;
-    tool_mask_b = imread([tool_mask_folder '/' tool_mask_names{i+1}]);
-    tool_mask_b = tool_mask_b(:,1+image_offset:end,:);
-    tool_mask_b = tool_mask_b(1:sr:end,1:sr:end,:);
-    tool_mask_b = logical((tool_mask_b(:,:,1)==0).*(tool_mask_b(:,:,2)==255).*(tool_mask_b(:,:,3)==0));
+    tool_mask_b = false(size(tool_mask));
     % point 3d map
     point_3d_map_a = point_3d_map_b;
     point_3d_map_b = load([point_3d_map_folder '/' point_3d_map_names{i+1}]).point_3d_map;
@@ -163,12 +146,10 @@ for i = 1 : length(scene_flow_map_names)
     [dem,dce] = dM_ver5(hypermap,cc_mask,height,width);
     % homeomorphism optimization
     % optimization variable: M_pe: U_ps -> S_pe
-    constraint_map = load([constraint_map_folder '/' constraint_map_names{i+1}]).constraint_map;
-    constraint_map = constraint_map(:,1+image_offset:end,:);
-    constraint_map = constraint_map(1:sr:end,1:sr:end,:);
+    constraint_map = zeros(size(point_3d_map_b));
     % if there exist a connected component without any direct deformation information,
         % the optimization would fail due to rank deficient in [im;alpha*dem]
-    constraint_mask = tool_mask_b;
+    constraint_mask = false(size(tool_mask_b));
     [pe] = linearSolverForHOP([im;alpha*dem],[pt;alpha*dce],constraint_mask,constraint_map,PL,sr,image_offset,true);
     % save the forward scene flow map into hypermap_a
     [hypermap,pe,forward_scene_flow_hyper,forward_optical_flow_hyper]...
