@@ -17,7 +17,7 @@ You can download the well-prepared ex vivo dataset from [SurgEM](https://github.
 
 The structure of the dataset looks like:
 
-```sh
+```
 ├── datasets
     ├── surgem_ex_vivo (the surgem ex vivo dataset)
         ├── constraint_map
