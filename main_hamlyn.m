@@ -2,13 +2,10 @@
 module_path = './source';
 addpath(module_path);
 
-disp("Have you checked the edge threshold, image_offset, sampling rate, constraint, mask, output folder, canonical size?")
-pause();
-
 texture_flag = true;
 save_flag = true;
 edge_filter_threshold = 10;
-edge_filter_threshold2 = 1;
+edge_filter_threshold2 = 4;
 sr = 1; % sampling rate
 alpha = 1.07;
 image_offset = 40;
@@ -46,8 +43,8 @@ point_mask = logical((point_3d_map(:,:,1)==0).*(point_3d_map(:,:,2)==0).*(point_
 tool_mask = false(size(left_image,1),size(left_image,2));
 height = size(left_image,1);
 width = size(left_image,2);
-heightc = round(1.2*height); % canonical
-widthc = round(1.2*width);
+heightc = round(3*height); % canonical
+widthc = round(7*width);
 dh = round((heightc-height)/2);
 dw = round((widthc-width)/2);
 
