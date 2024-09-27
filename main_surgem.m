@@ -2,9 +2,6 @@
 module_path = './source';
 addpath(module_path);
 
-disp("Have you checked the edge threshold, image_offset, sampling rate, constraint, mask, output folder, canonical size?")
-pause();
-
 texture_flag = true;
 save_flag = true;
 edge_filter_threshold = 10;
