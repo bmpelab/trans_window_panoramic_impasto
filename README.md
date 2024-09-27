@@ -13,7 +13,7 @@ https://github.com/bmpelab/trans_window_panoramic_impasto/assets/44491917/c95251
 
 ## Dataset preparation
 
-You can download the well-prepared ex vivo dataset from [SurgEM](https://github.com/bmpelab/SurgEM.git) and in vivo dataset (derived from Hamlyn center dataset) from [here](http://). For the EndoNeRF dataset, please download via their [website](https://github.com/med-air/EndoNeRF) and process following the instructions below.
+You can download the well-prepared ex vivo dataset from [SurgEM](https://github.com/bmpelab/SurgEM.git) and in vivo dataset (derived from Hamlyn center dataset) from [here](https://drive.google.com/drive/folders/1M-K3hazuGXqNcY0CEyxzdznxTU2ojr3v?usp=sharing). For the EndoNeRF dataset, please download via their [website](https://github.com/med-air/EndoNeRF) and prepare following the instructions below.
 
 The structure of the dataset looks like:
 
@@ -28,7 +28,7 @@ The structure of the dataset looks like:
         ├── rectified_right
         ├── evaluation
         ├── rectifiedCamera.mat (camera parameter)
-    ├── hamlyn_in_vivo
+    ├── hamlyn_in_vivo (the hamlyn in vivo dataset)
         ├── point_3d_map
         ├── scene_flow
         ├── rectified_left
