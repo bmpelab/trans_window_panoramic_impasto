@@ -1,6 +1,6 @@
 # Trans-Window Panoramic Impasto for Online Tissue Deformation Recovery
 
-Implementation for MICCAI 2024 paper **[Trans-Window Panoramic Impasto for Online Tissue Deformation Recovery](https://)** by [Jiahe Chen](http://), Etsuko Kobayashi, Ichiro Sakuma, and Naoki Tomii.
+Implementation for MICCAI 2024 paper **[Trans-Window Panoramic Impasto for Online Tissue Deformation Recovery](https://)** by [Jiahe Chen](https://heshengyiyue.github.io/), Etsuko Kobayashi, Ichiro Sakuma, and Naoki Tomii.
 
 A novel problem setting and model-based framework for online tissue deformation recovery.
 
